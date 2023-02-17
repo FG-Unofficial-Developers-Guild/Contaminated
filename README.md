@@ -1,7 +1,8 @@
+[![Build FG Extension](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml) [![Luacheckrc](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml)
 # Contaminated
 
-**Current Version:** 1.0
-**Last Updated:** 11/19/22
+**Current Version:** 1.1
+**Last Updated:** 02/17/23
 
 5E extension for FantasyGrounds that adds contamination as a condition as well as immunities to the contamination condition for support of [Dungeons of Drakkenheim](https://ghostfiregaming.com/dungeons-of-drakkenheim/)
 

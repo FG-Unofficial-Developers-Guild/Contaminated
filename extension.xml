@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <root release="3.0" version="3">
-	<announcement text="Contaminated v1.0\rby Ryan Hagelstrom 2022" font="emotefont" icon="Contaminated"/>
+	<announcement text="Contaminated v1.1\rby Ryan Hagelstrom 2022-2023" font="emotefont" icon="Contaminated" />
 	<properties>
-    	<loadorder>120</loadorder>
+		<loadorder>120</loadorder>
 		<name>Feature: Contaminated</name>
-		<version>1.0</version>
+		<version>1.1</version>
 		<author>Ryan Hagelstrom</author>
 		<description>Adds contamination as a 5E condition and automates the contamination stack</description>
 		<ruleset>
-            <name>5E</name>
+			<name>5E</name>
 		</ruleset>
 	</properties>
 	<base>
-    	<icon name="Contaminated" file="graphics/icons/contaminated.png"></icon>
-    	<script name="DoDContaminated" file="scripts/contaminated.lua" />
-  	</base>
+		<icon name="Contaminated" file="graphics/icons/contaminated.png">
+		</icon>
+		<script name="DoDContaminated" file="scripts/contaminated.lua" />
+	</base>
 </root>
