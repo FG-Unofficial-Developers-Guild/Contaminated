@@ -32,6 +32,9 @@ function onInit()
 
     table.insert(DataCommon.conditions, 'contamination');
     table.sort(DataCommon.conditions);
+
+    CalendarManager.registerLunarDayHandler('Drakkenheim', calcDrakkenheimLunarDay);
+    CalendarManager.registerMonthVarHandler('Drakkenheim', calcDrakkenheimMonthVar);
 end
 
 function onClose()
@@ -363,4 +366,34 @@ function onRecovery(rSource, _, rRoll)
     end
     rRoll.sDesc = rMessage.text;
     ActionDamage.notifyApplyDamage(nil, rSource, rRoll);
+end
+
+-- Drakkenheim Calandar Support
+function calcDrakkenheimLunarDay(nYear, nMonth, nDay)
+    local nZellerYear = nYear;
+    local nZellerMonth = nMonth
+    if nMonth < 3 then
+        nZellerYear = nZellerYear - 1;
+        nZellerMonth = nZellerMonth + 12;
+    end
+    local nZellerDay = (nDay + math.floor(2.6 * (nZellerMonth + 1)) + nZellerYear + math.floor(nZellerYear / 4) + (6 * math.floor(nZellerYear / 100)) +
+                           math.floor(nZellerYear / 400)) % 7;
+    if nZellerDay == 0 then
+        return 7;
+    end
+    return nZellerDay;
+end
+
+function calcDrakkenheimMonthVar(_, nMonth)
+    if nMonth == 2 then
+        local nYear = DB.getValue('calendar.current.year', 0);
+        if (nYear % 400) == 0 then
+            return 1;
+        elseif (nYear % 100) == 0 then
+            return 0;
+        elseif (nYear % 4) == 0 then
+            return 1;
+        end
+    end
+    return 0;
 end
