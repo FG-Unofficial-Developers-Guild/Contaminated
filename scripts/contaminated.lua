@@ -2,6 +2,10 @@
 --	  	Copyright © 2022
 --	  	This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 --	  	https://creativecommons.org/licenses/by-sa/4.0/
+--
+-- luacheck: globals onInit onClose decrementContaminated sumContamination cleanContaminationEffect updateEffect getContaminationLevel
+-- luacheck: globals RRActionManager halfDamage performRoll onContamination customApplyDamage customMessageDamage customAddEffect
+-- luacheck: globals customResetHealthNPC customResetHealth customParseEffect onRecovery calcDrakkenheimLunarDay calcDrakkenheimMonthVar
 local addEffect = nil;
 local parseEffects = nil;
 local applyDamage = nil;
@@ -84,7 +88,7 @@ function sumContamination(rActor, nContaminationLevel)
     local nodeCT = ActorManager.getCTNode(rActor);
     local nodeEffectsList = DB.getChildList(nodeCT, 'effects');
 
-    for _, nodeEffect in pairs(nodeEffectsList) do
+    for _, nodeEffect in ipairs(nodeEffectsList) do
         local sEffect = DB.getValue(nodeEffect, 'label', '');
         local aEffectComps = EffectManager.parseEffect(sEffect);
         for i, sEffectComp in ipairs(aEffectComps) do
