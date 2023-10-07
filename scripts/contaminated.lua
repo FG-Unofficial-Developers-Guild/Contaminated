@@ -2,6 +2,10 @@
 --	  	Copyright © 2022
 --	  	This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 --	  	https://creativecommons.org/licenses/by-sa/4.0/
+--
+-- luacheck: globals onInit onClose decrementContaminated sumContamination cleanContaminationEffect updateEffect getContaminationLevel
+-- luacheck: globals RRActionManager halfDamage performRoll onContamination customApplyDamage customMessageDamage customAddEffect
+-- luacheck: globals customResetHealthNPC customResetHealth customParseEffect onRecovery calcDrakkenheimLunarDay calcDrakkenheimMonthVar
 local addEffect = nil;
 local parseEffects = nil;
 local applyDamage = nil;
@@ -84,7 +88,7 @@ function sumContamination(rActor, nContaminationLevel)
     local nodeCT = ActorManager.getCTNode(rActor);
     local nodeEffectsList = DB.getChildList(nodeCT, 'effects');
 
-    for _, nodeEffect in pairs(nodeEffectsList) do
+    for _, nodeEffect in ipairs(nodeEffectsList) do
         local sEffect = DB.getValue(nodeEffect, 'label', '');
         local aEffectComps = EffectManager.parseEffect(sEffect);
         for i, sEffectComp in ipairs(aEffectComps) do
@@ -123,7 +127,8 @@ end
 function updateEffect(nodeActor, nodeEffect, sLabel)
     DB.setValue(nodeEffect, 'label', 'string', sLabel);
     local bGMOnly = EffectManager.isGMEffect(nodeActor, nodeEffect)
-    local sMessage = string.format('%s [\'%s\'] -> [%s]', Interface.getString('effect_label'), sLabel, Interface.getString('effect_status_updated'));
+    local sMessage = string.format('%s [\'%s\'] -> [%s]', Interface.getString('effect_label'), sLabel,
+                                   Interface.getString('effect_status_updated'));
     EffectManager.message(sMessage, nodeActor, bGMOnly);
 end
 
@@ -313,8 +318,8 @@ function customParseEffect(sPowerName, aWords)
             else
                 bContamination = false;
             end
-            if bContamination and StringManager.isWord(aWords[i + 2], {'level', 'levels'}) and StringManager.isWord(aWords[i + 3], 'of') and
-                StringManager.isWord(aWords[i + 4], 'contamination') then
+            if bContamination and StringManager.isWord(aWords[i + 2], {'level', 'levels'}) and
+                StringManager.isWord(aWords[i + 3], 'of') and StringManager.isWord(aWords[i + 4], 'contamination') then
                 local rContamination = {};
                 rContamination.sName = 'CONTAMINATION: ' .. sLevel;
                 rContamination.startindex = i;
@@ -376,8 +381,8 @@ function calcDrakkenheimLunarDay(nYear, nMonth, nDay)
         nZellerYear = nZellerYear - 1;
         nZellerMonth = nZellerMonth + 12;
     end
-    local nZellerDay = (nDay + math.floor(2.6 * (nZellerMonth + 1)) + nZellerYear + math.floor(nZellerYear / 4) + (6 * math.floor(nZellerYear / 100)) +
-                           math.floor(nZellerYear / 400)) % 7;
+    local nZellerDay = (nDay + math.floor(2.6 * (nZellerMonth + 1)) + nZellerYear + math.floor(nZellerYear / 4) +
+                           (6 * math.floor(nZellerYear / 100)) + math.floor(nZellerYear / 400)) % 7;
     if nZellerDay == 0 then
         return 7;
     end
