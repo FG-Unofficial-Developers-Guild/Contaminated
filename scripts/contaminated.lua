@@ -105,22 +105,56 @@ function sumContamination(rActor, nContaminationLevel)
     return nSummed;
 end
 
-function cleanContaminationEffect(rNewEffect)
+function cleanContaminationEffect(sUser, _, nodeCT, rNewEffect, bShowMsg)
     local nContaminationLevel = 0;
+    local rTarget = ActorManager.resolveActor(nodeCT);
+    local rSource = ActorManager.resolveActor(rNewEffect.sSource);
+    local sOriginal = rNewEffect.sName;
+    local aImmuneConditions = ActorManager5E.getConditionImmunities(rTarget, rSource);
+    local aNewEffectComps = {};
+    local aIgnoreComps = {};
+    local bImmune = false;
+    if StringManager.contains(aImmuneConditions, 'contamination') then
+        bImmune = true;
+    end
     local aEffectComps = EffectManager.parseEffect(rNewEffect.sName);
-    for i, sEffectComp in ipairs(aEffectComps) do
+    for _, sEffectComp in ipairs(aEffectComps) do
         local rEffectComp = EffectManager.parseEffectCompSimple(sEffectComp);
         if rEffectComp.type:lower() == 'contamination' or rEffectComp.original:lower() == 'contamination' then
-            if rEffectComp.mod == 0 then
-                rEffectComp.mod = 1;
-                sEffectComp = sEffectComp .. ': 1';
+            if bImmune then
+                table.insert(aIgnoreComps, sEffectComp);
+            else
+                if rEffectComp.mod == 0 then
+                    rEffectComp.mod = 1;
+                    sEffectComp = sEffectComp .. ': 1';
+                end
+                nContaminationLevel = rEffectComp.mod;
+                table.insert(aNewEffectComps, sEffectComp:upper())
             end
-            aEffectComps[i] = sEffectComp:upper();
-            nContaminationLevel = rEffectComp.mod;
+        else
+            table.insert(aNewEffectComps, sEffectComp);
+        end
+    end
+    rNewEffect.sName = EffectManager.rebuildParsedEffect(aNewEffectComps);
+    if next(aIgnoreComps) then
+        if bShowMsg then
+            local bSecret = ((rNewEffect.nGMOnly or 0) == 1);
+            local sMessage;
+            if rNewEffect.sName == '' then
+                sMessage = string.format('%s [\'%s\'] -> [%s]', Interface.getString('effect_label'), sOriginal,
+                                         Interface.getString('effect_status_targetimmune'));
+            else
+                sMessage = string.format('%s [\'%s\'] -> [%s] [%s]', Interface.getString('effect_label'), sOriginal,
+                                         Interface.getString('effect_status_targetpartialimmune'), table.concat(aIgnoreComps, ','));
+            end
+            if bSecret then
+                EffectManager.message(sMessage, nodeCT, true);
+            else
+                EffectManager.message(sMessage, nodeCT, false, sUser);
+            end
         end
     end
 
-    rNewEffect.sName = EffectManager.rebuildParsedEffect(aEffectComps);
     return nContaminationLevel;
 end
 
@@ -213,17 +247,15 @@ function customAddEffect(sUser, sIdentity, nodeCT, rNewEffect, bShowMsg)
         return addEffect(sUser, sIdentity, nodeCT, rNewEffect, bShowMsg);
     end
     local nContaminated = nil;
-    local nContaminationLevel = cleanContaminationEffect(rNewEffect);
+    local nContaminationLevel = cleanContaminationEffect(sUser, sIdentity, nodeCT, rNewEffect, bShowMsg);
+    -- Immune casued an empty effect so ignore
+    if rNewEffect.sName == '' then
+        return;
+    end
     if nContaminationLevel > 0 then
         local rActor = ActorManager.resolveActor(nodeCT);
-        local aCancelled = EffectManager5E.checkImmunities(nil, rActor, rNewEffect);
-        local bGMOnly = false
-        if #aCancelled > 0 then
-            local sMessage = string.format('%s [\'%s\'] -> [%s]', Interface.getString('effect_label'), rNewEffect.sName,
-                                           Interface.getString('effect_status_targetimmune'));
-            EffectManager.message(sMessage, nodeCT, false, sUser);
-            return
-        end
+        local bGMOnly = false;
+
         nContaminated = sumContamination(rActor, nContaminationLevel)
         if nContaminated then
             nContaminationLevel = nContaminated;

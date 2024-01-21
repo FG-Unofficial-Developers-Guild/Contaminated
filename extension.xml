@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <root release="3.0" version="3">
-	<announcement text="Contaminated v1.2\rby Ryan Hagelstrom 2022-2023" font="emotefont" icon="Contaminated" />
+	<announcement text="Contaminated v1.3\rby Ryan Hagelstrom 2022-2024" font="emotefont" icon="Contaminated" />
 	<properties>
 		<loadorder>120</loadorder>
 		<name>Feature: Contaminated</name>
-		<version>1.2</version>
+		<version>1.3</version>
 		<author>Ryan Hagelstrom</author>
 		<description>Adds contamination as a 5E condition and automates the contamination stack</description>
 		<ruleset>
