@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root version="3.0">
+	<calendar>
+		<base static="true">
+			<Drakkenheim>
+				<name type="string">Calendar of Saint Tarna</name>
+				<setting type="string">Drakkenheim</setting>
+				<lunardaycalc type="string">Drakkenheim</lunardaycalc>
+				<lunarweek>
+					<day1 type="string">Moonday</day1>
+					<day2 type="string">Tidesday</day2>
+					<day3 type="string">Windsday</day3>
+					<day4 type="string">Earthsday</day4>
+					<day5 type="string">Fireday</day5>
+					<day6 type="string">Starsday</day6>
+					<day7 type="string">Sunday</day7>
+				</lunarweek>
+				<periodvarcalc type="string">Drakkenheim</periodvarcalc>
+				<periods>
+					<period1>
+						<days type="number">31</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">7</duration>
+								<name type="string">Tarna's Wake</name>
+								<startday type="number">1</startday>
+							</holiday1>
+						</holidays>
+						<name type="string">Threshold</name>
+					</period1>
+					<period2>
+						<days type="number">28</days>
+						<name type="string">Thawing</name>
+					</period2>
+					<period3>
+						<days type="number">31</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">1</duration>
+								<name type="string">Spring Equinox</name>
+								<startday type="number">19</startday>
+							</holiday1>
+						</holidays>
+						<name type="string">Springtide</name>
+					</period3>
+					<period4>
+						<days type="number">30</days>
+						<name type="string">Hearthstone</name>
+					</period4>
+					<period5>
+						<days type="number">31</days>
+						<name type="string">Sowing</name>
+					</period5>
+					<period6>
+						<days type="number">30</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">1</duration>
+								<name type="string">Summer Solstice</name>
+								<startday type="number">21</startday>
+							</holiday1>
+						</holidays>
+						<name type="string">Highsummer</name>
+					</period6>
+					<period7>
+						<days type="number">31</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">1</duration>
+								<name type="string">Angelmeet</name>
+								<startday type="number">1</startday>
+							</holiday1>
+						</holidays>
+						<name type="string">Midyear</name>
+					</period7>
+					<period8>
+						<days type="number">31</days>
+						<name type="string">Sunbreak</name>
+					</period8>
+					<period9>
+						<days type="number">30</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">1</duration>
+								<name type="string">Fall Equinox</name>
+								<startday type="number">23</startday>
+							</holiday1>
+						</holidays>
+						<name type="string">Autumntide</name>
+					</period9>
+					<period10>
+						<days type="number">31</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">1</duration>
+								<name type="string">All Hallow's Eve</name>
+								<startday type="number">31</startday>
+							</holiday1>
+						</holidays>
+						<name type="string">Reaping</name>
+					</period10>
+					<period11>
+						<days type="number">30</days>
+						<name type="string">Rimewind</name>
+					</period11>
+					<period12>
+						<days type="number">31</days>
+						<holidays>
+							<holiday1>
+								<duration type="number">1</duration>
+								<name type="string">Winter Solstice</name>
+								<startday type="number">21</startday>
+							</holiday1>
+							<holiday2>
+								<duration type="number">7</duration>
+								<name type="string">Tarna's Wake</name>
+								<startday type="number">25</startday>
+							</holiday2>
+						</holidays>
+						<name type="string">Midwinter</name>
+					</period12>
+				</periods>
+			</Drakkenheim>
+		</base>
+	</calendar>
+</root>

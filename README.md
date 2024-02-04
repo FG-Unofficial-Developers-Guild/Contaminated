@@ -1,5 +1,7 @@
-[![Build FG Extension](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml) [![Luacheckrc](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml)
+
 # Contaminated
+
+[![Build FG Extension](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml) [![Luacheckrc](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml)
 
 **Current Version:** 1.3
 **Last Updated:** 01/21/23
@@ -20,4 +22,3 @@ NPC Sheets and spells will automatically parse contamination as a condition with
 | 6 | Monstrous Transformation! |
 
 **Note:** If using SilentRuin's Generic Actions extension, Verify Cast Effect must be set to "off" in that extension
-
