@@ -1,7 +1,7 @@
 
 # Contaminated
 
-[![Build FG Extension](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml) [![Luacheckrc](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml)
+[![Build FG Extension](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml) [![Luacheckrc](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml) [![Markdownlint](https://github.com/rhagelstrom/Contaminated/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/markdownlint.yml)
 
 **Current Version:** 1.3
 **Last Updated:** 01/21/23
