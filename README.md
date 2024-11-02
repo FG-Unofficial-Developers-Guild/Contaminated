@@ -3,22 +3,28 @@
 
 [![Build FG Extension](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/create-release.yml) [![Luacheckrc](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/luacheck.yml) [![Markdownlint](https://github.com/rhagelstrom/Contaminated/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/rhagelstrom/Contaminated/actions/workflows/markdownlint.yml)
 
-**Current Version:** 1.3
-**Last Updated:** 01/21/23
+**Current Version:** ~dev_version~ \
+**Updated:** ~date~
 
-5E extension for FantasyGrounds that adds contamination as a condition as well as immunities to the contamination condition for support of [Dungeons of Drakkenheim](https://ghostfiregaming.com/dungeons-of-drakkenheim/)
+**Overview:**
+Contaminated is a 5E extension for Fantasy Grounds that introduces contamination as a condition, alongside immunities to it. This extension supports the [Dungeons of Drakkenheim](https://ghostfiregaming.com/dungeons-of-drakkenheim/) campaign.
 
-This extension also automates the contamination stack by summing contamination levels when applied and decrementing them on long rest. When an actor gains a level of contamination, the mutation table will be rolled on and the result will show if a mutation takes place. The mutation table will need to be entered into FG by the GM, rolled on by the GM and results applied by the GM.
+## Features
 
-NPC Sheets and spells will automatically parse contamination as a condition with the text "target is contamination" or "gain(s) (N) level(s) of contamination".
+- **Contamination Automation:** Automatically sums contamination levels when applied and decrements them during a long rest.
+- **Mutation Table Integration:** When an actor gains a level of contamination, a mutation table is rolled, and the GM applies the results.
+- **NPC and Spell Parsing:** Automatically processes contamination in NPC sheets and spells, using phrases like "target is contaminated" or "gain(s) (N) level(s) of contamination".
+- **Calendar of Saint Tarna:** Added the calendar of Drakkenheim.
+
+> **Note**: If using SilentRuin's Generic Actions extension, ensure **Verify Cast Effect** is set to "off".
+
+## Contamination Levels and Symptoms
 
 | Level | Symptoms |
-|-----|--------|
+| --- | --- |
 | 1 | None |
 | 2 | Hit points regained by spending hit dice halved |
 | 3 | No hit points regained at the end of a long rest |
 | 4 | Damage dealt by weapon attacks and spells halved |
 | 5 | Incapacitated |
 | 6 | Monstrous Transformation! |
-
-**Note:** If using SilentRuin's Generic Actions extension, Verify Cast Effect must be set to "off" in that extension

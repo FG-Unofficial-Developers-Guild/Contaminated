@@ -13,6 +13,11 @@ env:
   MOD: '.mod'
   FILE_TYPE_EXLUSIONS: '*.git* *.css* *.resources* *.vscode* *.yml /*CalendarSaintTarna/* /*node_modules/* .editorconfig body.md *.psd *.xcf *.mod forge-thumbnail.png *.pdf LICENSE *.DS_Store*'
   CALANDER:  'CalendarSaintTarna'
+  RESOURCES: '.resources/'
+  GITHUB: '.github/'
+  THEME: '.css/torillic.css'
+  GRAPHICS: 'graphics/'
+  BADGES: '\[!\[.+\]\(.+\)\]\(.+\)\s?\n?'
 
 jobs:
   build:
@@ -20,6 +25,23 @@ jobs:
     steps:
     - name: Checkout Repo Assets
       uses: actions/checkout@v4
+
+    - name: Get current Date
+      run: echo "DATE=$(date +'%m/%d/%y')" >> $GITHUB_ENV
+
+    - name: Replace Date
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: '~date~'
+        exclude: ${{ env.FILE_TYPE_EXLUSIONS }}
+        replace: ${{ env.DATE }}
+
+    - name: Replace Version
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: '~dev_version~'
+        exclude: ${{ env.FILE_TYPE_EXLUSIONS }}
+        replace: ${{github.ref_name}}
 
     - name: Zip Assets Into ${{ github.event.repository.name }}${{ env.EXTENSION }} File
       uses: thedoctor0/zip-release@0.7.6
@@ -82,7 +104,9 @@ jobs:
           FG_USER_NAME: ${{ vars.FG_USER_NAME }}
           FG_USER_PASS: ${{ secrets.FG_USER_PASS }}
           FG_ITEM_ID: ${{ vars.FG_ITEM_ID }}
-          FG_README_UPDATE: ${{ vars.FG_README_UPDATE }}
           FG_UL_FILE: '${{ github.event.repository.name }}${{ env.EXTENSION }},${{ env.CALANDER }}${{ env.MOD }}'
+          FG_README_UPDATE: "TRUE"
+          FG_UPLOAD_BUILD: "TRUE"
+          FG_GRAPH_SALES: "FALSE"
         run: |
           python src/main.py
